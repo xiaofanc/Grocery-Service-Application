@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:insert="head :: head"></div>
+    <script src="pilot.js"></script>
+</head>
+<body>
+<h1> Welcome to the Grocery Delivery App!</h1>
+
+<div class="accordion" id="accordionExample">
+
+    <h2> Please click the button below to use different functions of view.</h2>
+
+    <div class="card">
+        <div class="card-header" id="heading0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse0" aria-expanded="false" aria-controls="collapse0">
+                Display Pilot
+            </button>
+        </div>
+        <div id="collapse0" class="collapse" aria-labelledby="heading0" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="displayPilotForm">
+                    <button type="submit" class="btn btn-primary">Display</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="displayPilot" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading1">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                Display Order
+            </button>
+        </div>
+        <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="displayOrderForm">
+                    <div class="form-group">
+                        <label for="displayOrderForm">Pilot Account</label>
+                        <input type="text" class="form-control pilot-account" name="pilot">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Display</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="displayOrder" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading2">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                Update Information
+            </button>
+        </div>
+        <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="updateInfoForm">
+                    <div class="form-group">
+                        <label for="updateInfoForm">Pilot Account</label>
+                        <input type="text" class="form-control pilot-account" name="pilot">
+                        <br />
+                        <label for="updateInfoForm">Phone Number</label>
+                        <input type="text" class="form-control phone-number" name="phone">
+                        <br />
+                        <label for="updateInfoForm">Tax ID</label>
+                        <input type="text" class="form-control tax-id" name="taxid">
+                        <br />
+                        <label for="updateInfoForm">License ID</label>
+                        <input type="text" class="form-control license-id" name="license">
+                        <br />
+                        <label for="updateInfoForm">Experience</label>
+                        <input type="number" class="form-control experience" name="experience" min="0" max="100">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="updateInfo" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="p-5">
+    <button onclick="return logout()">Logout</button>
+    <script>
+        function logout(){
+            const http = new XMLHttpRequest()
+            http.open('POST', '/auth/signout')
+            http.setRequestHeader('Content-type', 'application/json')
+            http.withCredentials = true;
+            http.send(null)
+            http.onload = function() {
+                alert("Successfully sign out!")
+                window.location.href="/login"
+            }
+        }
+    </script>
+</div>
+</body>
+</html>

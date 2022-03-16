@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="./login.css">
+</head>
+<body>
+<div class="login-wrap">
+    <div class="login-html">
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+        <div class="login-form">
+            <div class="sign-in-htm">
+                <div class="group">
+                    <label for="Username" class="label">Username</label>
+                    <input id="Username" type="text" class="input">
+                </div>
+                <div class="group">
+                    <label for="Password" class="label">Password</label>
+                    <input id="Password" type="password" class="input" data-type="password">
+                </div>
+                <div class="group">
+                    <input type="submit" class="button" value="Sign In" onclick="signin()">
+                    <script>
+                        function signin(){
+                            const params = JSON.stringify({
+                                userName: document.getElementById('Username').value,
+                                password: document.getElementById('Password').value
+                            })
+                            const http = new XMLHttpRequest()
+                            http.open('POST', '/auth/signin')
+                            http.setRequestHeader('Content-type', 'application/json')
+                            http.send(params)
+                            http.onload = function() {
+                                if(http.status == 200){
+                                    var response = JSON.parse(http.responseText);
+                                    var role = response['data']['userRole']
+                                    if(role == 'customer'){
+                                        window.location.href="/customermain";
+                                    } else if (role == 'pilot'){
+                                        window.location.href="/pilotmain";
+                                    } else if (role == 'manager'){
+                                        window.location.href="/managermain";
+                                    } else{
+                                        alert(response);
+                                    }
+                                }else{
+                                    alert("Unmatched username/password! Please try again.");
+                                }
+                            }
+                        }
+                    </script>
+                </div>
+                <div class="hr"></div>
+            </div>
+            <div class="sign-up-htm">
+                <div class="group">
+                    <label for="registerUsername" class="label">Username</label>
+                    <input id="registerUsername" type="text" class="input">
+                </div>
+                <div class="group">
+                    <label for="InputPassword" class="label">Password</label>
+                    <input id="InputPassword" type="password" class="input" data-type="password">
+                </div>
+                <div class="group">
+                    <label for="RepeatPassword" class="label">Repeat Password</label>
+                    <input id="RepeatPassword" type="password" class="input" data-type="password">
+                </div>
+                <div class="group">
+                    <label for="registerFirstname" class="label">First Name</label>
+                    <input id="registerFirstname" type="text" class="input">
+                </div>
+                <div class="group">
+                    <label for="registerLastname" class="label">Last Name</label>
+                    <input id="registerLastname" type="text" class="input">
+                </div>
+                <div class="group">
+                    <label class="label">User Role</label>
+                    <div>
+                        <input type="radio" name="size" id="selectRoleCustomer" class="form__radio-input" checked>
+                        <span class="form__radio-button"></span> Customer
+                        </label>
+                        <input type="radio" name="size" id="selectRoleEmployee" class="form__radio-input">
+                        <span class="form__radio-button"></span> Employee
+                        </label>
+                        <input type="radio" name="size" id="selectRoleManager" class="form__radio-input">
+                        <span class="form__radio-button"></span> Manager
+                        </label>
+                    </div>
+                </div>
+                <div class="group">
+                    <input type="submit" class="button" value="Sign Up" onclick="signup()">
+                    <script>
+                        function signup(){
+                            var role
+                            if(document.getElementById('selectRoleCustomer').checked){
+                                role = "customer"
+                            }else if(document.getElementById("selectRoleEmployee").checked){
+                                role = "pilot"
+                            }else if(document.getElementById("selectRoleManager").checked){
+                                role = "manager"
+                            }
+                            const params = JSON.stringify({
+                                userName: document.getElementById('registerUsername').value,
+                                firstName: document.getElementById('registerFirstname').value,
+                                lastName: document.getElementById('registerLastname').value,
+                                userRole: role,
+                                password: document.getElementById('InputPassword').value
+                            })
+                            const http = new XMLHttpRequest()
+                            http.open('POST', '/auth/signup')
+                            http.setRequestHeader('Content-type', 'application/json')
+                            http.send(params)
+                            http.onload = function() {
+                                alert(http.responseText)
+                                window.location.href="/login";
+                            }
+                        }
+                    </script>
+                </div>
+                <div class="hr"></div>
+                <div class="foot-lnk">
+                    <label for="tab-1">Already Member?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

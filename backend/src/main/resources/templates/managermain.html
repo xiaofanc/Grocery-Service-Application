@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:insert="head :: head"></div>
+    <script src="manager.js"></script>
+</head>
+<body>
+
+<h1> Welcome to the Grocery Delivery App!</h1>
+
+<div class="accordion" id="accordionExample">
+
+    <h2> Please click the button below to use different functions of management.</h2>
+
+    <div class="card">
+        <div class="card-header" id="heading0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse0" aria-expanded="false" aria-controls="collapse0">
+                Make Store
+            </button>
+        </div>
+        <div id="collapse0" class="collapse" aria-labelledby="heading0" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="makeStoreForm">
+                    <div class="form-group">
+                        <label for="makeStoreForm">Store Name</label>
+                        <input type="text" class="form-control store-name" name="store">
+                        <label for="makeStoreForm">Revenue</label>
+                        <input type="number" class="form-control revenue" name="revenue" min="0" max="1000000">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="makeStore" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading1">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                Display Store
+            </button>
+        </div>
+        <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="displayStoreForm">
+                    <button type="submit" class="btn btn-primary">Display</button>
+                </form>
+<!--                <div>-->
+<!--                    <table class="table">-->
+<!--                        <tr>-->
+<!--                            <th>name</th>-->
+<!--                            <th>revenue</th>-->
+<!--                        </tr>-->
+<!--                        <tr th:each="store : ${stores}">-->
+<!--                            <td th:text="${store.getName()}"></td>-->
+<!--                            <td th:text="${store.getRevenue()}"></td>-->
+<!--                        </tr>-->
+<!--                    </table>-->
+<!--                </div>-->
+                <div id="citytable"></div>
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="displayStore" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading2">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                Sell Item
+            </button>
+        </div>
+        <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="sellItemForm">
+                    <div class="form-group">
+                        <label for="sellItemForm">Store Name</label>
+                        <input type="text" class="form-control store-name" name="store">
+                        <br />
+                        <label for="sellItemForm">Item Name</label>
+                        <input type="text" class="form-control item-name" name="item">
+                        <br />
+                        <label for="sellItemForm">Weight (lb)</label>
+                        <input type="number" class="form-control weight" name="weight" min="0" max="2000">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Item</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="sellItem" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading3">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                Display Item
+            </button>
+        </div>
+        <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="displayItemForm">
+                    <div class="form-group">
+                        <label for="displayItemForm">Store Name</label>
+                        <input type="text" class="form-control store-name" name="store">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Display</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="displayItem" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading4">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                Make Pilot
+            </button>
+        </div>
+        <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="makePilotForm">
+                    <div class="form-group">
+                        <label for="makePilotForm">Pilot Account</label>
+                        <input type="text" class="form-control pilot-account" name="pilaccount">
+                        <br />
+                        <label for="makePilotForm">Pilot First Name</label>
+                        <input type="text" class="form-control pilot-firstname" name="pilfirstname">
+                        <br />
+                        <label for="makePilotForm">Pilot Last Name</label>
+                        <input type="text" class="form-control pilot-lastname" name="pillastname">
+                        <br />
+                        <label for="makePilotForm">Pilot Phone Number</label>
+                        <input type="text" class="form-control pilot-phonenumber" name="pilphone">
+                        <br />
+                        <label for="makePilotForm">Pilot Tax ID</label>
+                        <input type="text" class="form-control pilot-taxID" name="piltaxid">
+                        <br />
+                        <label for="makePilotForm">Pilot License ID</label>
+                        <input type="text" class="form-control pilot-license" name="pillicense">
+                        <br />
+                        <label for="makePilotForm">Pilot Experience</label>
+                        <input type="number" class="form-control pilot-experience" name="pilexperience" min="0" max="100">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="makePilot" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading5">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                Display Pilot
+            </button>
+        </div>
+        <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="displayPilotForm">
+                    <button type="submit" class="btn btn-primary">Display</button>
+                </form>
+                <!--                <div>-->
+                <!--                    <table class="table">-->
+                <!--                        <tr>-->
+                <!--                            <th>name</th>-->
+                <!--                            <th>revenue</th>-->
+                <!--                        </tr>-->
+                <!--                        <tr th:each="store : ${stores}">-->
+                <!--                            <td th:text="${store.getName()}"></td>-->
+                <!--                            <td th:text="${store.getRevenue()}"></td>-->
+                <!--                        </tr>-->
+                <!--                    </table>-->
+                <!--                </div>-->
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="displayPilot" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading6">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                Make Drone
+            </button>
+        </div>
+        <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="makeDroneForm">
+                    <div class="form-group">
+                        <label for="makeDroneForm">Store Name</label>
+                        <input type="text" class="form-control store-name" name="storename">
+                        <br />
+                        <label for="makeDroneForm">Drone ID</label>
+                        <input type="text" class="form-control drone-id" name="droneid">
+                        <br />
+                        <label for="makeDroneForm">Drone Weight Capacity (lb)</label>
+                        <input type="number" class="form-control drone-capacity" name="dronecap" min="0" max="200">
+                        <br />
+                        <label for="makeDroneForm">Number of Delivery</label>
+                        <input type="number" class="form-control no-delivery" name="dronenodelivery" min="0" max="1000">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="makeDrone" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading7">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                Display Drone
+            </button>
+        </div>
+        <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="displayDroneForm">
+                    <div class="form-group">
+                        <label for="displayDroneForm">Store Name</label>
+                        <input type="text" class="form-control store-name" name="store">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Display</button>
+                </form>
+<!--                <div>-->
+<!--                    <table class="table">-->
+<!--                        <tr>-->
+<!--                            <th>Drone ID</th>-->
+<!--                            <th>Total Capacity</th>-->
+<!--                            <th>Number of Orders</th>-->
+<!--                            <th>Remaining Capacity</th>-->
+<!--                            <th>Trips Left</th>-->
+<!--                        </tr>-->
+<!--                        <tr th:each="store : ${store}">-->
+<!--                            <td th:text="${store.displayDrones(store)}"></td>-->
+<!--                        </tr>-->
+<!--                    </table>-->
+<!--                </div>-->
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="displayDrone" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading8">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                Fly Drone
+            </button>
+        </div>
+        <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="flyDroneForm">
+                    <div class="form-group">
+                        <label for="flyDroneForm">Store Name</label>
+                        <input type="text" class="form-control store-name" name="storename">
+                        <br />
+                        <label for="flyDroneForm">Drone ID</label>
+                        <input type="text" class="form-control drone-id" name="drone">
+                        <br />
+                        <label for="flyDroneForm">Pilot Account</label>
+                        <input type="text" class="form-control pilot-account" name="pilot">
+                        <br />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Assign</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="flyDrone" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading9">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                Display Orders
+            </button>
+        </div>
+        <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="displayOrderForm">
+                    <div class="form-group">
+                        <label for="displayOrderForm">Store Name</label>
+                        <input type="text" class="form-control store-name" name="store">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Display</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="displayOrder" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading10">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                Update Credit
+            </button>
+        </div>
+        <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="updateCreditForm">
+                    <div class="form-group">
+                        <label for="updateCreditForm">Customer Account</label>
+                        <input type="text" class="form-control userAccount-account" name="account">
+                        <label for="updateCreditForm">Credit</label>
+                        <input type="number" class="form-control credit" name="credit" min="0" max="50000">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="updateCredit" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading11">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
+                View Logs
+            </button>
+        </div>
+        <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="viewLogsForm">
+                    <div class="form-group">
+                        <label for="viewLogsForm">Log ID</label>
+                        <input type="text" class="form-control log-id" name="log">
+                    </div>
+                    <button type="submit" class="btn btn-primary">View</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="viewLogs" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading12">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12">
+                View Inspection
+            </button>
+        </div>
+        <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="viewInspectionForm">
+                    <button type="submit" class="btn btn-primary">View</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="viewInspection" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button onclick="return logout()">Logout</button>
+    <script>
+        function logout(){
+            const http = new XMLHttpRequest()
+            http.open('POST', '/auth/signout')
+            http.setRequestHeader('Content-type', 'application/json')
+            http.withCredentials = true;
+            http.send(null)
+            http.onload = function() {
+                alert("Successfully sign out!")
+                window.location.href="/login"
+            }
+        }
+    </script>
+
+</div>
+</body>
+</html>

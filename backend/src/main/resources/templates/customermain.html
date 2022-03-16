@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:insert="head :: head"></div>
+    <script src="customer.js"></script>
+</head>
+<body>
+<h1> Welcome to the Grocery Delivery App!</h1>
+
+<div class="accordion" id="accordionExample">
+
+    <h2> Please click the button below to use different functions of our service.</h2>
+
+    <div class="card">
+        <div class="card-header" id="heading0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse0" aria-expanded="false" aria-controls="collapse0">
+                Display Store Item
+            </button>
+        </div>
+        <div id="collapse0" class="collapse" aria-labelledby="heading0" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="customerGetItemForm">
+                    <div class="form-group">
+                        <label for="customerGetItemForm">Store Name</label>
+                        <input type="text" class="form-control store-name" name="store">
+                    </div>
+                    <button type="submit" class="btn btn-primary">View</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="customerGetItem" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading1">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                Start Order
+            </button>
+        </div>
+        <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="startOrderForm">
+                    <div class="form-group">
+                        <label for="startOrderForm">Store Name</label>
+                        <input type="text" class="form-control store-name" name="store">
+                        <br />
+                        <label for="startOrderForm">Order ID</label>
+                        <input type="text" class="form-control order-ID" name="order">
+                        <br />
+                        <label for="startOrderForm">DroneID</label>
+                        <input type="text" class="form-control drone-ID" name="drone">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Start</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="startOrder" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading2">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                Request Item
+            </button>
+        </div>
+        <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="requestItemForm">
+                    <div class="form-group">
+                        <label for="requestItemForm">Store Name</label>
+                        <input type="text" class="form-control store-name" name="store">
+                        <br />
+                        <label for="requestItemForm">Order ID</label>
+                        <input type="text" class="form-control order-ID" name="order">
+                        <br />
+                        <label for="requestItemForm">Item Name</label>
+                        <input type="text" class="form-control item-name" name="item">
+                        <br />
+                        <label for="requestItemForm">Quantity</label>
+                        <input type="number" class="form-control quantity" name="quantity" min="0" max="1000">
+                        <br />
+                        <label for="requestItemForm">Price</label>
+                        <input type="number" class="form-control price" name="price" min="0" max="1000000">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Item</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="requestItem" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading3">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                Display Orders
+            </button>
+        </div>
+        <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="displayOrderForm">
+                    <button type="submit" class="btn btn-primary">Display</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="displayOrder" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading4">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                Display Order Items
+            </button>
+        </div>
+        <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="displayOrderItemForm">
+                    <button type="submit" class="btn btn-primary">View</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="displayOrderItem" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading5">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                Purchase Order
+            </button>
+        </div>
+        <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="purchaseOrderForm">
+                    <div class="form-group">
+                        <label for="purchaseOrderForm">Store Name</label>
+                        <input type="text" class="form-control store-name" name="store">
+                        <br />
+                        <label for="purchaseOrderForm">Order ID</label>
+                        <input type="text" class="form-control order-ID" name="order">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Purchase</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="purchaseOrder" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading6">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                Cancel Order
+            </button>
+        </div>
+        <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="cancelOrderForm">
+                    <div class="form-group">
+                        <label for="cancelOrderForm">Store Name</label>
+                        <input type="text" class="form-control store-name" name="store">
+                        <br />
+                        <label for="cancelOrderForm">Order ID</label>
+                        <input type="text" class="form-control order-ID" name="order">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cancel</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="cancelOrder" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <div class="card">
+        <div class="card-header" id="heading7">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                Update Phone Number
+            </button>
+        </div>
+        <div id="collapse7" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
+            <div class="card-body">
+                <form id="updatePhoneForm">
+                    <div class="form-group">
+                        <label for="updatePhoneForm">Phone Number</label>
+                        <input type="text" class="form-control phone-number" name="phone">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+                <br />
+                <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+                    <pre id="updatePhone" class="result-div" style="padding: 20px 10px 20px 50px">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <button onclick="return logout()">Logout</button>
+    <script>
+        function logout(){
+            const http = new XMLHttpRequest()
+            http.open('POST', '/auth/signout')
+            http.setRequestHeader('Content-type', 'application/json')
+            http.withCredentials = true;
+            http.send(null)
+            http.onload = function() {
+                alert("Successfully sign out!")
+                window.location.href="/login"
+            }
+        }
+    </script>
+
+</div>
+</body>
+</html>
