@@ -1,5 +1,5 @@
 # Grocery Service Application
-https://cs6310gp54.herokuapp.com/
+Deploy on Heroku Cloud platform: https://cs6310gp54.herokuapp.com/
 
 ## Introduction
 
@@ -21,7 +21,7 @@ This file is well commented for additional details, and we recommend reading ove
 
 ### Frontend
 The front end service defines a single html file that calls our backend service and displays the delivery app. Our web service is deployed on port 8080
-You should be able to navigate to [http://localhost:8080](http://localhost:8080) to view the page
+You should be able to navigate to [http://localhost:8080](http://localhost:8080) to view the page during design.
 
 ### Backend
 Our backend is a simple application controller that creates the services, saves the information to the database, and returns it as a response.
