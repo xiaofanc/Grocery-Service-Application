@@ -1,5 +1,5 @@
 # Grocery Service Application
-Deploy on Heroku Cloud platform: https://cs6310gp54.herokuapp.com/
+<!-- Deploy on Heroku Cloud platform: https://cs6310gp54.herokuapp.com/ -->
 
 ## Introduction
 
